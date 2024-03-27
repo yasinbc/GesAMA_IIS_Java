@@ -141,7 +141,7 @@ public class TipoFecha
     }
     
     /** actualiza el año */
-    public void updAnyo(inint anyo){
+    public void updAnyo(int anyo){
         this.anyo=anyo;
     }
     

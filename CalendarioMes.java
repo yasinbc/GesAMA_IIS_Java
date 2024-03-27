@@ -9,19 +9,19 @@ public class CalendarioMes
         final int DIAS_SEMANA = 7;
         int aux;
 
-	aux = ((int)dia + N ) % DIAS_SEMANA;
+        aux = ((int)dia + N ) % DIAS_SEMANA;
 
-	return TipoDia(aux);
+        return (TipoDia)aux;
     }
     
     public TipoDia DiaDeLaSemana(TipoFecha fecha){
        TipoMes M = fecha.leerMes();
        int anyo = fecha.leerAnyo();
-       int increDias;		                /* Incremento en días de la semana */
-       int increAnyos; 		                /* Incremento en días por años enteros */
+       int increDias;                        /* Incremento en días de la semana */
+       int increAnyos;                         /* Incremento en días por años enteros */
        int increBisiesto;                       /* Incremento en días por años bisiestos */
-       final int AnyoReferencia = 1601;	        /* Año a partir del cual determinamos el día */
-       final TipoDia DiaReferencia = Domingo;	/* Día a partir del cual determinamos el día*/
+       final int AnyoReferencia = 1601;            /* Año a partir del cual determinamos el día */
+       final TipoDia DiaReferencia = Domingo;    /* Día a partir del cual determinamos el día*/
         
        if (M == Enero) {increDias = 0;}
            else if (M == Febrero ){increDias =3;}
@@ -48,7 +48,7 @@ public class CalendarioMes
        }
        
        /* añadir un día si la fecha a evaluar cae en un ano bisiesto despues del día 29 de febrero */
-       if( bisiesto (anyo) &&	( M > Febrero )) {
+       if( bisiesto (anyo) &&    ( M > Febrero )) {
            increDias ++;
        }
     
@@ -85,7 +85,7 @@ public class CalendarioMes
     
     public void crearCalendario(TipoAlquileres alquileres, int mes, int anyo, int idMaquina){
         DiasCalendario dias;
-        MiniString leyenda;
+        String leyenda;
         String nombre;
         Fincas fincas;
         char c = 'C';
@@ -100,7 +100,7 @@ public class CalendarioMes
         
         //Cargamos los días, luego sobreescribimos con CX
         for (int i=0; i<31; i++){
-            sprintf(leyenda, "%d", i+1);
+            System.out.printf(leyenda, "%d", i+1);
             strcpy(dias[i],leyenda);
         }
         
@@ -164,7 +164,7 @@ public class CalendarioMes
               }
 
               for (int j=diaInicio; j<diaFin; j++){//recorremos el array de dias para marcar los días alquilados
-                  sprintf(leyenda, "%c%d", c, alquilada); //alquileres.leerFincaAlquilada(i).leerId());
+                  System.out.printf(leyenda, "%c%d", c, alquilada); //alquileres.leerFincaAlquilada(i).leerId());
                   strcpy(dias[j],leyenda);
                   diasCosechados++;//aumentamos los días cosechados
               }
@@ -186,55 +186,55 @@ public class CalendarioMes
 
         PrimerDia=DiaDeLaSemana(fecha);
         
-        for (int k = (int)PrimerDia; k >= 1; k --) {				/* imprimir blancos de principio de mes */
-            if (ind % 7 == 5) {						/* imprimir barra de fín de semana */
-        	printf ("| ");
+        for (int k = (int)PrimerDia; k >= 1; k --) {                /* imprimir blancos de principio de mes */
+            if (ind % 7 == 5) {                        /* imprimir barra de fín de semana */
+                System.out.printf ("| ");
             }
-        	
-            if ( ind %7 != 0 && ind % 7 != 5 ) {	/* imprimir blanco entre campos si no es lunes o viernes */
-		printf (" ");
+            
+            if ( ind %7 != 0 && ind % 7 != 5 ) {    /* imprimir blanco entre campos si no es lunes o viernes */
+                System.out.printf (" ");
             }
-            printf (" . ");
+            System.out.printf (" . ");
             ind ++;
-	}
-	
-	for (int k = 0; k < DiasDelMes (fecha); k ++) {			/* imprimir todos los días del mes*/
+    }
+    
+    for (int k = 0; k < DiasDelMes (fecha); k ++) {            /* imprimir todos los días del mes*/
             if (ind != 0) {
-                if (ind % 7 == 0) {					/* cambio de semana (linea ) si es necesario */
-                    printf ("\n");
-		}
+                if (ind % 7 == 0) {                    /* cambio de semana (linea ) si es necesario */
+                    System.out.printf ("\n");
+                }
             }
-            if (ind % 7 == 5) {						/* imprimir barra de fín de semana */
-                printf ("| ");
+            if (ind % 7 == 5) {                        /* imprimir barra de fín de semana */
+                System.out.printf ("| ");
             }
-            if ( ind %7 != 0 && ind % 7 != 5 ) {		/* imprimir blanco entre campos si no es lunes o viernes */
-                printf (" ");
+            if ( ind %7 != 0 && ind % 7 != 5 ) {        /* imprimir blanco entre campos si no es lunes o viernes */
+                System.out.printf (" ");
             }
             printf ("%2s ", calendario[k]);
             ind++;
-	}
+    }
         
-	while ( ind % 7 != 0 ) {
-            if (ind % 7 == 5) {						/* imprimir barra de fín de semana */
-                printf ("| ");
+    while ( ind % 7 != 0 ) {
+            if (ind % 7 == 5) {                        /* imprimir barra de fín de semana */
+                System.out.printf ("| ");
             }
-            if ( ind %7 != 0 && ind % 7 != 5 ) {	/* imprimir blanco entre campos si no es lunes o viernes */
-                printf (" ");
+            if ( ind %7 != 0 && ind % 7 != 5 ) {    /* imprimir blanco entre campos si no es lunes o viernes */
+                System.out.printf (" ");
             }
-                printf (" . ");
+                System.out.printf (" . ");
                 ind++;
-	}
-	
-	printf ("\n");
+    }
+    
+    System.out.printf ("\n");
     }
     
     /** imprime la leyenda que hay debajo del calendario */
     public void mostrarLeyenda(Fincas fincas, int alquilada, int diasTraslado, int diasCosechados, int diasEspera){
-        printf("Tiempo de traslados (Tr): %d d%cas\n", diasTraslado, I);
-        printf("Tiempo de espera: %d d%cas\n", diasEspera, I);
+        System.out.printf("Tiempo de traslados (Tr): %d días\n", diasTraslado);
+        System.out.printf("Tiempo de espera: %d días\n", diasEspera);
         for (int i=0; i<alquilada; i++){
             printf("Cosecha C%d: finca %s\n", i+1, fincas[i]);
         }
-        printf("Tiempo total de cosechas (C#): %d d%cas\n", diasCosechados, I);
+        System.out.printf("Tiempo total de cosechas (C#): %d días\n", diasCosechados);
     }
 }
