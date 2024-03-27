@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=TipoCoordenadas
+comment1.params=CoordMaq\ CoordFinca
+comment1.target=int\ calcularDistancia(TipoCoordenadas,\ TipoCoordenadas)
+comment1.text=calcula\ la\ distancia\ entre\ dos\ puntos
+comment2.params=
+comment2.target=float\ leerLat()
+comment2.text=lee\ Latitud
+comment3.params=
+comment3.target=float\ leerLon()
+comment3.text=lee\ Longitud
+comment4.params=x\ y
+comment4.target=void\ inicializa(float,\ float)
+comment4.text=guarda\ la\ longitud/latitud
+numComments=5
